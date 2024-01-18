@@ -5,11 +5,12 @@ import { Colors } from '../../Shared/Colors.js';
 const styles = StyleSheet.create({
 
     MainBody: {
-        flexDirection: 'column',
-        fontFamily: "Roboto",
+        flex: 1,
+        justifyContent: 'flex-end',
     },
 
-    container: {
+
+    header: {
         
         paddingTop: 70,
         marginTop: -25,
@@ -19,48 +20,62 @@ const styles = StyleSheet.create({
         
     },
 
-    textAprenda: {
-        color: Colors.black,
-        fontSize: 30,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        marginTop: 75,
-        marginBottom: 150
-
-    },
-
-    textCadastro: {
-        color: Colors.black,
-        fontSize: 20,
-        textAlign: 'center',
-        marginBottom: 20,
-    },
-
-    buttonContainer: {
-        backgroundColor: Colors.primary,
-        width: 200,
-        height: 50,
-        borderRadius: 20,
-        alignSelf: 'center',
+    modalParent: {
+        flex: 1,
+        justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 20,
+    },
+
+    modalChild: {
+        width: 300,
+        height: 500,
+        backgroundColor: Colors.white,
+        borderRadius: 20,
+        padding: 20,
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
     },
     
-    button: {
-        marginTop: 5,
-        backgroundColor: Colors.primary,
+    modalHeader: {
+        width:"100%",
         flexDirection: 'row',
-        alignItems: 'center',
+        justifyContent: 'space-between',
+        alignItems: 'flex-center',
+        backgroundColor: Colors.white,
+        marginBottom: 20,
+    },
+
+    sair: {
+        alignSelf: 'flex-start',
         
     },
-    
 
-    textButton: {
-        color: '#fff',
-        fontSize: 20,
-        textAlign: 'center',
-        marginTop: 10,
+    titulo: {
+        width: "60%",
+        height: 35,
+        backgroundColor: Colors.white,
+        marginBottom: 20,
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
     },
+
+    modalBody: {
+        width: "100%",
+        height: 300,
+        backgroundColor: Colors.white,
+        marginBottom: 20,
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+    },
+
+    escrita: {
+        width: "100%",
+        height: 300,
+        marginBottom: 20,
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+    },
+    
 
 });
 

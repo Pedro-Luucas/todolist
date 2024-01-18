@@ -1,103 +1,85 @@
 import React, {useState, useEffect} from 'react';
-import { View, Text, FlatList, TouchableOpacity, Keyboard } from 'react-native';
-import { TextInput, Button } from 'react-native-paper';
+import { SafeAreaView, View, Text, FlatList, TouchableOpacity, Keyboard } from 'react-native';
+import { TextInput, Button, Modal } from 'react-native-paper';
 import { styles } from "./stylesHome.js";
-import { db } from '../../config.js';
 import { useNavigation } from '@react-navigation/native';  
 import { FontAwesome } from '@expo/vector-icons';
+import { db } from '../../config.js';
 
-
-var indexes = []
 
 export default function Home() {
+    const [visible, setVisible] = useState(false);
     const [todos, setTodos] = useState([]);
+    const [todo, setTodo] = useState([]);
+    const [time, setTime] = useState(new Date);
+    const [titulo, setTitulo] = useState('');
+    const [escrita, setEscrita] = useState('');
     const todosRef = db.collection('todos');
     const [texto, setTexto] = useState('');
     const navigation = useNavigation();
 
 
-    
-    // delete data from firebase
-    const deleteTodo = (todo) => {
-        todosRef
-        .doc(todo.id)
-        .delete()
-        .then(() => {
-            alert('Todo deleted!')
-        })
-        .catch((error) => {
-            alert(error)
-        })
-    }
+    const show = () => setVisible(true);
+    const hide = () => setVisible(false);
 
-    // add a todo
-    /*const addTodo = ()  => {
-        if (texto.length > 0){
-            console.log('aaaaaaaaaaaaaaaa')
-            const timeStamp = db.FieldValue.serverTimestamp();
-            console.log(timeStamp)
-            const data = {
-                heading: texto,
-                createdAt: timeStamp
-            }
-        };
-        setTexto('');
-        Keyboard.dismiss();
 
-        todosRef
-            .add(data)
 
-            
-        }*/
 
-        const addTodo = () {
-            try {
-                if (texto.length > 0){
-                    console.log('aaaaaaaaaaaaaaaa')
-                    const timeStamp = db.FieldValue.serverTimestamp();
-                    console.log(timeStamp)
-                    todoRef = todosRef.collection(`todo`)
-                    todoRef.add({
-                        id:
-                    })
-                }
-                
-                
-            }
+
+    useEffect( () => {
+        
+        const getTodos = async () => {
+            const data = await db.getDocs(todosRef)
+            console.log(data)
+            setTodos(data.docs.map((doc) => ({...doc.data(), id: doc.id})))
+            console.log("\n\n\n\n\n\n\n",todos,"\n\n\n\n\n\n\n")
         }
-
-
-
+        getTodos()
+    
+    })
+    
 
     return (
-        <View>
-            <View style={styles.container}>
-                <TextInput
-                    placeholder='New Todo'
-                    onChangeText={(textoEscrito) => setTexto(textoEscrito)}
-                    value={texto}
-                    underlineColorAndroid='transparent'
-                />
-                <Button onPress={addTodo}>
-                    <Text> Add </Text>
+        <SafeAreaView style={styles.MainBody}>
+
+                <Button onPress={show}>
+                    <Text> Add new note </Text>
                 </Button>
-            </View>
-            <FlatList
-                data={todos}
-                numColumns={1}
-                renderItem={({item}) => {
-                    (
-                    <View>
-                        <Button onPress={() => navigation.navigate('Details', {item})}>
-                            <FontAwesome
-                            name='trash-o'
-                            color='red'
-                            onPress={() => deleteTodo(item)}
-                            />
-                        </Button>
+
+                <Modal visible={visible} transparent={true} onDismiss={hide}>
+                    <View style={styles.modalParent}>
+                        <View style={styles.modalChild}>
+
+                            <View style={styles.modalHeader}>
+                                <TextInput
+                                    mode="outlined"
+                                    label='Titulo'
+                                    value={titulo}
+                                    style={styles.titulo}
+                                    onChangeText={titulo => setTitulo(titulo)}
+                                />
+                                <Button mode="contained-tonal" onPress={hide} style={styles.sair}>
+                                    <Text>X</Text>
+                                </Button>
+                            </View>
+
+                            <View style={styles.modalBody}>
+                                <TextInput
+                                    mode="flat"
+                                    label='Escrita'
+                                    value={escrita}
+                                    style={styles.escrita}
+                                    onChangeText={escrita => setEscrita(escrita)}
+                                />
+                            </View>
+
+                            <Button mode="contained" onPress={() => { hide(); setTime(Date.now())}}>
+                                <Text> Add </Text>
+                            </Button>
+
+                        </View>
                     </View>
-                )}
-            }
-            />
-        </View>
-    );}
+                </Modal>
+        </SafeAreaView>
+    );
+}
