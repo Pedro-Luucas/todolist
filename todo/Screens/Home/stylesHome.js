@@ -6,9 +6,24 @@ const styles = StyleSheet.create({
 
     MainBody: {
         flex: 1,
-        justifyContent: 'flex-end',
     },
 
+    buttonNewNote: {
+        width: "100%",
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+    },
+
+    newNote: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: Colors.white,
+        backgroundColor: Colors.primary,
+        padding: 20,
+        textAlign: 'center',
+        justifyContent: 'flex-end',
+    },
 
     header: {
         
@@ -32,6 +47,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.white,
         borderRadius: 20,
         padding: 20,
+        paddingBottom: 0,
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
     },
@@ -69,13 +85,31 @@ const styles = StyleSheet.create({
     },
 
     escrita: {
-        width: "100%",
         height: 300,
+        width: "100%",
         marginBottom: 20,
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
+        textAlignVertical: 'top',
     },
     
+    modalFooter: {
+        width: "100%",
+        height: 77,
+        alignItems: 'flex-center',
+        backgroundColor: Colors.accept,
+        
+    },
+
+    buttonAdd: {
+        
+        width: "100%",
+        borderRadiusTopLeft: 20,
+        borderRadiusTopRight: 20,
+        borderRadiusBottomLeft: 0,
+        borderRadiusBottomRight: 0,
+
+    },
 
 });
 

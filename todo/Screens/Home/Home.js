@@ -5,9 +5,12 @@ import { styles } from "./stylesHome.js";
 import { useNavigation } from '@react-navigation/native';  
 import { FontAwesome } from '@expo/vector-icons';
 import { db } from '../../config.js';
+import { FixedBottom } from '../../Components/FixedBottom/index.js';
 
 
 export default function Home() {
+    const [heigh, setHeigh] = useState(300);
+    const [numLines, setNumLines] = useState(1);
     const [visible, setVisible] = useState(false);
     const [todos, setTodos] = useState([]);
     const [todo, setTodo] = useState([]);
@@ -42,8 +45,8 @@ export default function Home() {
     return (
         <SafeAreaView style={styles.MainBody}>
 
-                <Button onPress={show}>
-                    <Text> Add new note </Text>
+                <Button onPress={show} style={styles.buttonNewNote}>
+                    <Text style={styles.newNote}> Adicionar nova nota </Text>
                 </Button>
 
                 <Modal visible={visible} transparent={true} onDismiss={hide}>
@@ -65,18 +68,23 @@ export default function Home() {
 
                             <View style={styles.modalBody}>
                                 <TextInput
+                                    dense={true}
+                                    multiline={true}
+                                    numberOfLines={numLines}
                                     mode="flat"
-                                    label='Escrita'
+                                    label={
+                                        <Text style={styles.label}>{"Escreva aqui"}</Text>
+                                    }
                                     value={escrita}
                                     style={styles.escrita}
                                     onChangeText={escrita => setEscrita(escrita)}
                                 />
                             </View>
-
-                            <Button mode="contained" onPress={() => { hide(); setTime(Date.now())}}>
-                                <Text> Add </Text>
-                            </Button>
-
+                            <FixedBottom>
+                                <Button  style={styles.buttonAdd} onPress={() => { hide(); setTime(Date.now()); Keyboard.dismiss();}}>
+                                    <Text>Adicionar</Text>
+                                </Button>
+                            </FixedBottom>
                         </View>
                     </View>
                 </Modal>
