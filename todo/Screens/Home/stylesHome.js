@@ -10,16 +10,21 @@ const styles = StyleSheet.create({
 
     buttonNewNote: {
         width: "100%",
+        height: 150,
         position: 'absolute',
         bottom: 0,
         left: 0,
+        backgroundColor: Colors.black,
+        color: Colors.white,
+        borderRadius: 0,
+        justifyContent: 'center',
+        
     },
 
     newNote: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: Colors.white,
-        backgroundColor: Colors.primary,
+        color: Colors.black,
         padding: 20,
         textAlign: 'center',
         justifyContent: 'flex-end',
