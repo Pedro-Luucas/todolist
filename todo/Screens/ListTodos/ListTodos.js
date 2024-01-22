@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { styles } from "./stylesDetails.js";
+import { styles } from "./stylesListTodos.js";
 
-export default function Details() {
+export default function ListTodos() {
     return (
         <View>
-            <Text>Details</Text>
+            <Text>ListTodos</Text>
         </View>
     );
 }

@@ -91,11 +91,12 @@ const styles = StyleSheet.create({
 
     escrita: {
         height: 300,
-        width: "100%",
+        width: 250,
         marginBottom: 20,
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
         textAlignVertical: 'top',
+        boxSize: 'border-box',
     },
     
     modalFooter: {
