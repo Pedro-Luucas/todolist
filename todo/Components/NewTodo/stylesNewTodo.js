@@ -99,6 +99,12 @@ const styles = StyleSheet.create({
         boxSize: 'border-box',
     },
     
+    label: {
+        flexDirection: "row",
+        alignSelf: "flex-start",
+        width: "100%",
+    },
+
     modalFooter: {
         width: "100%",
         height: 77,

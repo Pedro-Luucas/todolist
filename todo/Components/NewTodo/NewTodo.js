@@ -3,7 +3,7 @@ import { View, Keyboard } from 'react-native';
 import { TextInput, Text, Button } from 'react-native-paper';
 import { styles } from "./stylesNewTodo.js";
 import { db } from '../../config.js';
-import { collection, getDocs, addDoc} from "firebase/firestore"
+import { collection, addDoc} from "firebase/firestore"
 
 function NewTodo  ( props )  {
 
@@ -13,22 +13,6 @@ function NewTodo  ( props )  {
     const [time, setTime] = useState(new Date);
     const [tituloValue, setTituloValue] = useState('')
     const [escritaValue, setEscritaValue] = useState('');
-
-    const [todos, setTodos] = useState([]);
-    const [todo, setTodo] = useState([]);
-
-
-    /*useEffect( () => {
-        
-        const getTodos = async () => {
-            const data = await getDocs(todosRef)
-            console.log(data)
-            setTodos(data.docs.map((doc) => ({...doc.data(), id: doc.id})))
-            console.log("\n\n\n\n\n\n\n",todos,"\n\n\n\n\n\n\n")
-        }
-        getTodos()
-
-    })*/
 
     const addTodo = async () => {
         await addDoc(todosRef, {titulo: tituloValue, escrita: escritaValue, tempo: time})
@@ -85,7 +69,7 @@ function NewTodo  ( props )  {
                 />
             </View>
 
-                <Button style={styles.buttonAdd} onPress={() => { props.handleClose(); setTime(Date.now()); addTodo(); }}>
+                <Button style={styles.buttonAdd} onPress={ () => { props.handleClose(); setTime(Date.now()); addTodo(); }}>
                     <Text>Adicionar</Text>
                 </Button>
 

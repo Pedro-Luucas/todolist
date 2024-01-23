@@ -8,114 +8,37 @@ const styles = StyleSheet.create({
         flex: 1,
     },
 
-    buttonNewNote: {
+    buttonAll: {
         width: "100%",
         height: 150,
+        justifyContent: 'center',
+    },
+
+    buttonNewNote: {
+        width: "100%",
         position: 'absolute',
         bottom: 0,
         left: 0,
         backgroundColor: Colors.black,
         color: Colors.white,
         borderRadius: 0,
+        
+        
+    },
+
+    buttonSeeNote: {
+        width: "100%",
+        position: 'absolute',
+        bottom: 150,
+        left: 0,
+        backgroundColor: Colors.primary,
+        color: Colors.white,
+        borderRadius: 0,
         justifyContent: 'center',
-        
-    },
+    }
 
-    newNote: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: Colors.black,
-        padding: 20,
-        textAlign: 'center',
-        justifyContent: 'flex-end',
-    },
 
-    header: {
-        
-        paddingTop: 70,
-        marginTop: -25,
-        backgroundColor: Colors.white,
-        borderTopRightRadius: 20,
-        borderTopLeftRadius: 20,
-        
-    },
-
-    modalParent: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-
-    modalChild: {
-        width: 300,
-        height: 500,
-        backgroundColor: Colors.white,
-        borderRadius: 20,
-        padding: 20,
-        paddingBottom: 0,
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
-    },
     
-    modalHeader: {
-        width:"100%",
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'flex-center',
-        backgroundColor: Colors.white,
-        marginBottom: 20,
-    },
-
-    sair: {
-        alignSelf: 'flex-start',
-        
-    },
-
-    titulo: {
-        width: "60%",
-        height: 35,
-        backgroundColor: Colors.white,
-        marginBottom: 20,
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
-    },
-
-    modalBody: {
-        width: "100%",
-        height: 300,
-        backgroundColor: Colors.white,
-        marginBottom: 20,
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
-    },
-
-    escrita: {
-        height: 300,
-        width: "100%",
-        marginBottom: 20,
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
-        textAlignVertical: 'top',
-    },
-    
-    modalFooter: {
-        width: "100%",
-        height: 77,
-        alignItems: 'flex-center',
-        backgroundColor: Colors.accept,
-        
-    },
-
-    buttonAdd: {
-        
-        width: "100%",
-        borderRadiusTopLeft: 20,
-        borderRadiusTopRight: 20,
-        borderRadiusBottomLeft: 0,
-        borderRadiusBottomRight: 0,
-
-    },
-
 });
 
 export { styles }
