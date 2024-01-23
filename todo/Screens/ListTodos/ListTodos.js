@@ -26,13 +26,7 @@ export default function ListTodos() {
         
         },[])
 
-    const TodoBox = ({titulo, escrita, time}) => (
-        <View style={styles.todoBox}>
-          <Text style={styles.titulo}>{titulo}</Text>
-          <Text style={styles.escrita}>{escrita}</Text>
-          <Text style={styles.time}>{time}</Text>
-        </View>
-      );
+    
 
 
 
