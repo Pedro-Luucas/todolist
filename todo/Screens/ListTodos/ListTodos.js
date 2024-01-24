@@ -2,13 +2,18 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { SafeAreaView, FlatList, View, Text } from 'react-native';
 import { styles } from "./stylesListTodos.js";
+import { Button } from 'react-native-paper';
 import { collection, getDocs } from "firebase/firestore"
 import { db } from '../../config.js';
+import { useNavigation } from '@react-navigation/native';  
+
+import  TodoBox  from '../../Components/TodoBox';
 
 export default function ListTodos() {
 
-    const todosRef = collection(db,'todos')
+    const navigation = useNavigation();
 
+    const todosRef = collection(db,'todos')
 
     const [todos, setTodos] = useState([]);
 
@@ -24,9 +29,7 @@ export default function ListTodos() {
         getTodos()
 
         
-        },[])
-
-    
+        },[]);
 
 
 
@@ -38,16 +41,22 @@ export default function ListTodos() {
     return (
         <SafeAreaView styles={styles.mainBody}>
 
+            <Button mode="contained" style={styles.buttonVoltar} onPress={() => navigation.navigate('Home')}>
+                <Text>Voltar</Text>
+            </Button>
+
             <FlatList
                 data={todos}
-                renderItem={({item}) => 
-                <TodoBox 
+                renderItem={({item}) => (
+                    <TodoBox 
                     titulo={item.titulo} 
                     escrita={item.escrita} 
-                    time={item.time}
-                />}
+                    time={Date(item.tempo)}
+                    />)}
+                
                 keyExtractor={todoBox => todoBox.id}
             />
+
 
         </SafeAreaView>
     );

@@ -89,14 +89,17 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
     },
 
+    escritaWrapper: {
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+        boxSize: 'border-box',
+    },
+
     escrita: {
         height: 300,
         width: 250,
-        marginBottom: 20,
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
+
         textAlignVertical: 'top',
-        boxSize: 'border-box',
     },
     
     label: {
@@ -105,16 +108,17 @@ const styles = StyleSheet.create({
         width: "100%",
     },
 
-    modalFooter: {
-        width: "100%",
-        height: 77,
-        alignItems: 'flex-center',
-        backgroundColor: Colors.accept,
-        
+
+
+    timeWrapper:{
+        marginBottom:-10,
+        flexDirection:'row-reverse'
+    },
+    time:{
     },
 
-    buttonAdd: {
-        
+    buttonAddWrapper: {
+        padding: 30,
         width: "100%",
         borderRadiusTopLeft: 20,
         borderRadiusTopRight: 20,

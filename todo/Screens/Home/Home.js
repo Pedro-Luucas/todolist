@@ -4,12 +4,13 @@ import { Button, Modal } from 'react-native-paper';
 import { styles } from "./stylesHome.js";
 import { useNavigation } from '@react-navigation/native';  
 
-import  NewTodo  from '../../Components/NewTodo/NewTodo.js';
+import  NewTodo  from '../../Components/NewTodo';
 //import { FixedBottom } from '../../Components/FixedBottom/index.js';
 
 
 export default function Home() {
     const [visible, setVisible] = useState(false);
+    
     const navigation = useNavigation();
 
 
