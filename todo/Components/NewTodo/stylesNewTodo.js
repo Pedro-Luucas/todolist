@@ -111,10 +111,12 @@ const styles = StyleSheet.create({
 
 
     timeWrapper:{
+        marginTop: 10,
         marginBottom:-10,
-        flexDirection:'row-reverse'
+        
     },
     time:{
+        flexDirection:'row-reverse'
     },
 
     buttonAddWrapper: {

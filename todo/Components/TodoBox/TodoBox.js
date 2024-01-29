@@ -26,7 +26,6 @@ const TodoBox = ( props ) => (
                     </Button>
 
                 </View>
-
             </View>
 
             <View style={styles.timeWrapper}>

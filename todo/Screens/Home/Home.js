@@ -5,7 +5,6 @@ import { styles } from "./stylesHome.js";
 import { useNavigation } from '@react-navigation/native';  
 
 import  NewTodo  from '../../Components/NewTodo';
-//import { FixedBottom } from '../../Components/FixedBottom/index.js';
 
 
 export default function Home() {
@@ -22,6 +21,9 @@ export default function Home() {
     }
 
 
+
+
+    
 
 
     return (
@@ -43,8 +45,8 @@ export default function Home() {
 
                 <Modal visible={visible} transparent={true} onDismiss={ () => {hide();} }>
                     <NewTodo
-                        titulo={"Titulooo"}
-                        escrita={"Escreva o que quiser!"}
+                        titulo={"Título"}
+                        escrita={"Escreva!"}
                         handleClose={()=>hide()} />
                 </Modal>
         </SafeAreaView>
