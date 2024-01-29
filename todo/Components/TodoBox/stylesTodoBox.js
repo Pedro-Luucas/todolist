@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     buttonEdit: {
-        marginLeft:25,
+        marginLeft:15,
     },
     buttonDelete: {
         marginLeft:10,
@@ -39,12 +39,9 @@ const styles = StyleSheet.create({
         
     },
     time: {
-        opacity: 0.7
+        opacity: 0.6
     },
-
-
-
-
+    
 })
 
 export {styles};

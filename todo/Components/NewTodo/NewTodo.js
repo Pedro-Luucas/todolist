@@ -5,12 +5,21 @@ import { styles } from "./stylesNewTodo.js";
 import { db } from '../../config.js';
 import { collection, addDoc, serverTimestamp, doc, updateDoc } from "firebase/firestore"
 import { PropTypes } from 'prop-types';
-import { AsyncStorage } from 'react-native';
+
+
+
+// acho que esse foi o componente mais complicado que eu ja fiz até agora
+// fiz ele com dois modos:
+// o modo padrao de adicionar mais um ToDo
+// e com o modo de edição, onde um ToDo já existente pode ser editado
 
 function NewTodo(props) {
     const editBool = props.editMode
+
     const identifier = props.identifier
+
     const tituloEdit = props.tituloEdit
+    const escritaEdit = props.escritaEdit
 
     const todosRef = collection(db, 'todos');
 
@@ -18,9 +27,12 @@ function NewTodo(props) {
     const [tituloValue, setTituloValue] = useState('');
     const [escritaValue, setEscritaValue] = useState('');
 
-    
-
-
+    // outro grande problema que tive no projeto foi o de timestamps
+    // o firebase utiliza um objeto timestamp diferente do javascript normal, https://firebase.google.com/docs/reference/android/com/google/firebase/Timestamp
+    // nao achei um metodo bom de transformar o timestamp do firebase em um objeto Date() do javascript
+    // entao no meu db do firebase tem dois campos pra tempo:
+    // um campo timestamp do firebase de quando o ToDo foi criado (inalteravel)
+    // e o outro campo eh essa gambiarra de string que muda toda vez que o ToDo for alterado
     const addDate = (dateNow = new Date()) => {
         const year = dateNow.getFullYear();
         const month = String(dateNow.getMonth() + 1).padStart(2, '0');
@@ -31,20 +43,27 @@ function NewTodo(props) {
         setTimeValue(TempoAtual);
     };
 
+
+    // funcao pra adicionar um ToDo
     const addTodo = async () => {
         await addDoc(todosRef, { titulo: tituloValue, escrita: escritaValue, timestamp: serverTimestamp(), time: timeValue })
     };
 
+
+    // funcao pra editar um ToDo
     const editTodo = async (id, titulo, escrita, time) => {
         const todoDoc = doc(db, "todos", id);
         const updatedDoc = { titulo: titulo, escrita: escrita, time: time };
         await updateDoc(todoDoc, updatedDoc);
     };
 
+    // funcao que verifica se esta em modo de edicao e
+    // aplica o value dos dois TextInput como o do texto a
+    // ser editado
     const editMode = async () => {
         if (editBool === true) {
-            setTituloValue(props.tituloEdit);
-            setEscritaValue(props.escritaEdit);
+            setTituloValue(tituloEdit);
+            setEscritaValue(escritaEdit);
         }
     };
 
@@ -56,6 +75,8 @@ function NewTodo(props) {
         console.log(tituloValue);
         console.log(escritaValue);
     }, []);
+
+
 
     return (
         <View style={styles.modalParent}>
@@ -99,7 +120,7 @@ function NewTodo(props) {
                     </View>
 
                     <View style={styles.buttonAddWrapper}>
-                        <Button style={styles.buttonAdd} mode='contained-tonal' onPress={() => { props.handleClose(); /*props.handleAdd();*/ addTodo(); }}>
+                        <Button style={styles.buttonAdd} mode='contained-tonal' onPress={() => { props.handleClose(); /*props.handleAdd();*/ !editBool ? addTodo() : editTodo(identifier, tituloValue, escritaValue, timeValue) }}>
                             <Text>{props.adicionar}</Text>
                         </Button>
                     </View>
@@ -109,14 +130,18 @@ function NewTodo(props) {
     );
 }
 
+
+// decidi usar propTypes nesse projeto pq queria 
+// props opcionais e obrigatorios, e esse foi o unico
+// jeito que eu encontrei sem mudar o projeto pra typescript
 NewTodo.propTypes = {
     titulo: PropTypes.string.isRequired,
     handleClose: PropTypes.func.isRequired,
     escrita: PropTypes.string.isRequired,
     adicionar: PropTypes.string,
-    editMode: PropTypes.bool.isRequired,
+    editMode: PropTypes.bool,
     tituloEdit: PropTypes.string,
-    escritaEdit: PropTypes.string,
+    escritaEdit: PropTypes.string
 };
 
 NewTodo.defaultProps = {

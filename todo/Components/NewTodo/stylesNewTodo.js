@@ -4,41 +4,6 @@ import { Colors } from '../../Shared/Colors.js';
 
 const styles = StyleSheet.create({
 
-    MainBody: {
-        flex: 1,
-    },
-
-    buttonNewNote: {
-        width: "100%",
-        height: 150,
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        backgroundColor: Colors.black,
-        color: Colors.white,
-        borderRadius: 0,
-        justifyContent: 'center',
-        
-    },
-
-    newNote: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: Colors.black,
-        padding: 20,
-        textAlign: 'center',
-        justifyContent: 'flex-end',
-    },
-
-    header: {
-        
-        paddingTop: 70,
-        marginTop: -25,
-        backgroundColor: Colors.white,
-        borderTopRightRadius: 20,
-        borderTopLeftRadius: 20,
-        
-    },
 
     modalParent: {
         flex: 1,
@@ -66,9 +31,10 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
 
-    sair: {
-        alignSelf: 'flex-start',
-        
+    label: {
+        flexDirection: "row",
+        alignSelf: "flex-start",
+        width: "100%",
     },
 
     titulo: {
@@ -79,6 +45,12 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
     },
+
+    sair: {
+        alignSelf: 'flex-start',
+        
+    },
+
 
     modalBody: {
         width: "100%",
@@ -102,14 +74,6 @@ const styles = StyleSheet.create({
         textAlignVertical: 'top',
     },
     
-    label: {
-        flexDirection: "row",
-        alignSelf: "flex-start",
-        width: "100%",
-    },
-
-
-
     timeWrapper:{
         marginTop: 10,
         marginBottom:-10,

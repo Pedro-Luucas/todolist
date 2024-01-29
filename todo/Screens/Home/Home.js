@@ -8,10 +8,13 @@ import  NewTodo  from '../../Components/NewTodo';
 
 
 export default function Home() {
-    const [visible, setVisible] = useState(false);
+    
     
     const navigation = useNavigation();
 
+
+    // funcoes pro modal do NewTodo
+    const [visible, setVisible] = useState(false);
 
     const show = () => {
         setVisible(true);
@@ -32,6 +35,8 @@ export default function Home() {
                 <Button mode="contained" onPress={ () => {show();} } style={styles.buttonNewNote} contentStyle={styles.buttonAll}>
                     Adicionar nova nota 
                 </Button>
+                
+                {/* botao que vai pra lista de todos os ToDos */}
                 <Button
                     mode="contained"
                     onPress={() => navigation.navigate('ListTodos')}
@@ -42,7 +47,8 @@ export default function Home() {
                 </Button>
             
 
-
+                {/* Modal com um componenente que permite o usuario
+                    adicionar um ToDo */}
                 <Modal visible={visible} transparent={true} onDismiss={ () => {hide();} }>
                     <NewTodo
                         titulo={"Título"}

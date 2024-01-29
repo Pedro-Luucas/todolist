@@ -25,11 +25,11 @@ export default function ListTodos() {
 
     const [newTitulo, setNewTitulo] = useState('')
     const [newEscrita, setNewEscrita] = useState('')
-    const [newTime, setNewTime] = useState('')
 
     const [identifier, setIndentifier] = useState('')
 
-
+    // funcao assincrona que adiciona o proprio ID
+    // como atributo de cada documento e guarda todos os ToDos no hook {todos}
     const getTodos = async () => {
         const data = await getDocs(todosRef)
         console.log(data)
@@ -37,29 +37,15 @@ export default function ListTodos() {
         console.log("\n\n\n\n\n\n\n",todos,"\n\n\n\n\n\n\n")
     }
  
-
+    //funcao pra deletar um ToDo
     const handleDelete = async (id) => {
         const todoDoc = doc(db, "todos", id);
         await deleteDoc(todoDoc);
         getTodos();
     }
 
-    const handleEdit = async (id, titulo, escrita, time) => {
 
-    }
-
-    const tituloEdit = async (identifier) => {
-
-            const docRef = doc(db, 'todos', identifier);
-            const docSnapshot = await getDoc(docRef)
-            const tituloString = docSnapshot.data().titulo;
-            setNewTitulo(tituloString)
-            console.log(newTitulo)
-
-    }
-
-
-
+    // funcoes para o modal do NewTodo
     const [visible, setVisible] = useState(false);
 
     const show = () => {
@@ -71,7 +57,7 @@ export default function ListTodos() {
 
 
 
-
+    // fetching
     useEffect(() => {
         getTodos();
     }, []);
@@ -83,6 +69,9 @@ export default function ListTodos() {
                 <Text>Voltar</Text>
             </Button>
 
+            {/* FlatList que renderiza todos os ToDos do firebase em
+                uma lista com o componente TodoBox localizado em '../../Components/TodoBox'.
+                o handleEdit() mostra o mesmo modal NewTodo porém em modo de edicao */}
             <FlatList
                 data={todos}
                 renderItem={({item}) => (
@@ -95,8 +84,8 @@ export default function ListTodos() {
                         }}
                         handleEdit={() => {
                             setIndentifier(String(item.id));
-                            tituloEdit(item.id);
-                            console.log(newTitulo, identifier)
+                            setNewTitulo(item.titulo);
+                            setNewEscrita(item.escrita);
                             show();
                         }} 
                         
@@ -105,15 +94,16 @@ export default function ListTodos() {
             </FlatList>
 
             <Modal visible={visible} transparent={true} onDismiss={ () => {hide();}}>
+                {/* NewTodo em modo de edicao */}
                 <NewTodo
                         editMode={true}
                         identifier={identifier}
                         titulo={"Título:"}
                         tituloEdit={newTitulo}
                         escrita={"Edite:"}
-                        escritaEdit={'escrita do edit oprraraaaaa'}
+                        escritaEdit={newEscrita}
                         adicionar={"Editar"}
-                        handleClose={()=>hide()} />
+                        handleClose={() => {hide(); getTodos();}} />
             </Modal>
 
 
